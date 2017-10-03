@@ -1,0 +1,14 @@
+﻿Сборка начата 04.06.2017 19:10:08.
+     1>Проект "D:\Documents\PP_last\PP_Server\PP_Server\PP_Server.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\visual\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"Omp\\" /Fd"Omp\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>d:\documents\pp_last\pp_server\pp_server\main.cpp(65): warning C4018: <: несоответствие типов со знаком и без знака
+       Link:
+         D:\visual\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents\PP_last\PP_Server\Omp\PP_Server.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents\PP_last\PP_Server\Omp\PP_Server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Documents\PP_last\PP_Server\Omp\PP_Server.lib" /MACHINE:X86 Omp\main.obj
+         PP_Server.vcxproj -> D:\Documents\PP_last\PP_Server\Omp\PP_Server.exe
+     1>Сборка проекта "D:\Documents\PP_last\PP_Server\PP_Server\PP_Server.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:00.82
