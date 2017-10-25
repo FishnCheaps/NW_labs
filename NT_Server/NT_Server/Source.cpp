@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "Packager.h"
 #include <process.h>
+#include <vector>
 
 //#include <sstream>
 //#include <string>
@@ -84,12 +85,17 @@
 //}
 Server * server;
 Client * client;
+Client * client2;
 
 void serverLoop2(void *)
 {
+	std::vector<std::thread*> trd;
 	while (true)
 	{
-		server->update();
+		//server->update();
+		trd.push_back(server->updateMult<Packager>());
+		//trd[0]->join();
+		//trd[1]->join();
 		
 	}
 }
@@ -98,8 +104,8 @@ void serverLoop(void *)
 	Packager pk;
 	while (true)
 	{
-		if(server->reciveFromAll<Packager>(&pk))
-			std::cout<<pk.a<<" "<<pk.b<<std::endl;
+		//if(server->reciveFromAll<Packager>(&pk))
+			//std::cout<<pk.a<<" "<<pk.b<<std::endl;
 	}
 }
 int main()
@@ -109,13 +115,16 @@ int main()
 	_beginthread(serverLoop, 0, (void*)12);
 
 	client = new Client();
+	client2 = new Client();
 	Packager B;
 	B.a = 4;
 	B.b = 'c';
 	client->sendMessage<Packager>(client->connectSocket, &B);
 	B.a = 3;
 	B.b = 'd';
-	client->sendMessage<Packager>(client->connectSocket, &B);
+	client2->sendMessage<Packager>(client->connectSocket, &B);
+	B.meta = "CLOSE";
+	client2->sendMessage<Packager>(client->connectSocket, &B);
 	while (true)
 	{
 		;

@@ -1,3 +1,5 @@
 ﻿  Source.cpp
+d:\repos\network\nt_server\nt_server\server.h(198): warning C4715: Server::updateMult<Packager>: значение возвращается не при всех путях выполнения
+d:\repos\network\nt_server\nt_server\server.h(196): warning C4172: возвращение адреса локальной или временной переменной : thr
   NT_Server.vcxproj -> D:\Repos\Network\NT_Server\Debug\NT_Server.exe
   NT_Server.vcxproj -> D:\Repos\Network\NT_Server\Debug\NT_Server.pdb (Partial PDB)

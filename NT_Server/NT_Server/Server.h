@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <WS2tcpip.h>
 #include <map>
+#include <thread>
 
 #include "Packager.h"
 
@@ -12,6 +13,25 @@
 
 #define DEFAULT_PORT "9898"
 #define DEFAULT_BUFLEN 512
+
+
+
+template <typename T, typename F>
+void reciveMult(SOCKET sock, F* server)
+{
+	T buf;
+	buf.meta = "";
+	int res;
+	while (buf.meta!="CLOSE") {
+		res = 0;
+		res = server->receiveMessage<T>(sock, &buf);
+		if (res != 0)
+		{
+			std::cout << "recived: " << buf.toString() << std::endl;
+		}
+	}
+	std::cout << "Closed " << std::endl;
+}
 
 class Server
 {
@@ -27,6 +47,9 @@ public:
 	bool acceptNewClient(int& id);
 
 	void update();
+	template<typename T>
+	std::thread* updateMult();
+
 
 	template <typename T>
 	bool reciveFromAll(T* buf);
@@ -158,6 +181,19 @@ void Server::update()
 		printf("Client %d connected to the server\n", clientId);
 
 		clientId++;
+	}
+}
+template <typename T>
+std::thread* Server::updateMult()
+{
+	if (acceptNewClient(clientId))
+	{
+		printf("Client %d connected to the server\n", clientId);
+		SOCKET sock = sessions.at(clientId);
+		clientId++;
+		std::thread thr(reciveMult<T,Server>,sock,this);
+		thr.detach();
+		return &thr;
 	}
 }
 
